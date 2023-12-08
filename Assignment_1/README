@@ -1,0 +1,62 @@
+*** README File ***
+Ilektra-Despoina Papamatthaiaki, AM: 2018030106
+
+--gcc version
+gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+Copyright (C) 2021 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+To compile and run this assginment:
+
+Open a linux terminal in the project directory and type "make" command.
+
+This assignmet contains two c programs, dh_assign1.c and rsa_assign1.c
+
+dh_assign1.c:
+
+In order for this program to run the program user needs to give it the correct arguments. Use -h to see the options the program has. 
+After it checks all the given arguments it tests if a and b are less than p or it doesn't continue and returns 0. 
+If a,b are correctly given it produces A,B and the secret key and checks if it's the same for both users. 
+Then, it opens a file and writes the A,B,secret key inside and closes the file.
+
+The Diffie-Hellman works with no problems. 
+
+rsa_assign1.c:
+
+GMP Library is used for this implementation.
+In order for this program to run the program user needs to give it the correct arguments. Use -h to see the options the program has. 
+
+If the user chooses -g:
+The program asks the user to enter p,q and checks if they are prime numbers. If not, it asks the user to re-enter until they choose two prime numbers.
+Then it calculates the values n, lambda_n, e and d. 
+If there is no modular inverse of (e, lambda_n) the program warns you that the keys generated might be wrong. 
+Then, it creates the two files public.key and private.key and stores the n,d & n,e values. The public key consists of n and d and the private key of n and e. 
+After that it closes the files. 
+
+If the user chooses -e:
+
+Firstly, the program checks if the user gave all the arguments from the command line (-i, -o, -k) and if not, exits.
+After that, it checks to see if the input file and the key file exist, if not it exits.
+It opens the input file & key file in reading mode and outputfile in writing mode.
+It reads the key and n from the key file and stores them in variables. 
+Then it gets the size of the input file, and in a for loop takes each character and converts it to int.
+Then converts the integer to mpz_t and then uses mpz_powm for the ecryption.
+Then mpz_export to write on the encrypted_text array that is used to write in the file afterwards.
+
+If the user chooses -d:
+
+Firstly, the program checks if the user gave all the arguments from the command line (-i, -o, -k) and if not, exits.
+After that, it checks to see if the input file and the key file exist, if not it exits.
+It opens the input file & key file in reading mode and outputfile in writing mode.
+It reads the key and n from the key file and stores them in variables. 
+Then it gets the size of the input file, and in a for loop takes each size_t and converts it to mpz_t then uses mpz_powm for the decryption.
+Then mpz_import to write on the decrypted_text array that is used to write in the file afterwards.
+
+Decryption function does not work properly. The output text contains symbols and not characters. I was not able to detect the error.
+
+
+
+
+
+
