@@ -1,0 +1,31 @@
+*** README File - Assignment 6 ***
+
+Ilektra-Despoina Papamatthaiaki, AM: 2018030106
+
+gcc --version
+gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+Copyright (C) 2021 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+-----------------------------------------------------------------------------------------------------
+
+By looking at the code I understand that using 'char buffer[100] = {0};' we cannot prevent buffer overflow and also the gets function is a dangerous function to use because it does not perform any bounds checking, and it reads an unlimited amount of data into the buffer that can lead to a buffer overflow vulnerability. The buffer has a fixed size of 100 bytes, but the gets function does not check how much data is being read into the buffer. If the user inputs more than 100 bytes, the gets function will overwrite adjacent memory locations.
+
+Then, I created the wrote the python program that creates the desired payload and wrote it into a file.
+Then I run the following command:
+
+cat ./payload.bin | ./bof
+
+And what came as an output was:
+
+GREETINGS FELLOW TRAVELER!
+
+My job is to repeat everything you say to me, just to annoy you!!
+:)
+
+You only get one chance... make it count!!
+What do you want to say to me: 
+You said: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA�@ 
+Segmentation fault (core dumped)
+
