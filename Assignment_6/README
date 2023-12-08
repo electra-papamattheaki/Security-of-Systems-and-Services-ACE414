@@ -1,0 +1,81 @@
+*** README File - Assignment 6 ***
+
+Ilektra-Despoina Papamatthaiaki, AM: 2018030106
+
+gcc --version
+gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+Copyright (C) 2021 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+-----------------------------------------------------------------------------------------------------
+
+To run this program you use:
+    chmod +x adblock.sh
+And then:
+    sudo ./adblock.sh -*whichever command you want*
+Use -help for help.
+
+I added for extra help these 3 variables: 
+ip_tables="/sbin/iptables"
+domainNamesSame="domainNamesSame.txt"
+domainNamesDifferent="domainNamesDifferent.txt"
+
+-domains:
+
+I used 'fgrep -v -f' to get all the different domain names from the two files and stored them to $domainNamesDifferent 
+and 'fgrep -f' to get all the same domain names stored them to $domainNamesSame. With a loop and 'dig +short' I got the 
+IP addresses and stored them to $IPAddressesDifferent and $IPAddressesSame respectively.
+
+-ipssame:
+
+I used a loop that reads the file and "$ip_tables" -I INPUT -s $line -j DROP to drop all the packets from the same IPs.
+
+-ipsdiff:
+
+I used a loop that reads the file and "$ip_tables" -I INPUT -s $line -j REJECT to reject all the packets from the
+different IPs.
+
+-save:
+
+In order to save the rules I used "$ip_tables"-save > $adblockRules
+
+-load:
+
+In order to load the rules I used "$ip_tables"-restore < $adblockRules
+
+-reset:
+
+In order to reset the rules I used "$ip_tables" -F that deletes all rules in  chain or all chains. 
+
+-list:
+
+In order to list all the rules I used "$ip_tables" -L 
+
+
+So when I run:
+
+    - sudo ./adblock.sh -domains
+        I get the 2 files containing the IP addresses.
+    - sudo ./adblock.sh -ipsdiff
+    - sudo ./adblock.sh -list 
+     It shows all the ip adressess that is supposed to REJECT.
+    - sudo ./adblock.sh -ipssame
+    - sudo ./adblock.sh -list  
+        It shows all the ip adressess that is supposed to DROP and then REJECT.
+    - sudo ./adblock.sh -save
+        All the rules are saved in $adblockRules.
+    - sudo ./adblock.sh -reset
+        All the rules are reset.
+    - sudo ./adblock.sh -load
+        It loads all the previous rules.
+    - sudo ./adblock.sh -list
+        It shows all the rules I previously set.
+
+Answer to Question 1:
+
+After configuring the adblock rules test your script by visiting your favourite websites without any other 
+adblocking mechanism, can you see ads? Do they load? Some ads persist, why?
+
+Most of the ads are not loading but there are some that keep appearing.
+
