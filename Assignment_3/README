@@ -1,0 +1,30 @@
+*** README FILE Assignment 3 ***
+Ilektra-Despoina Papamatthaiaki, AM: 2018030106
+
+--gcc version
+gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+Copyright (C) 2021 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+-----------------------------------------------------------------------------------------------------
+
+Step 1: Enhanced Access Control Logging tool
+
+fopen():
+Firstly I get the user id with getuid(), then the path using realpath(), the date and timestamp using locatime(), the access_type using access() and F_OK, 
+the flag is_action_denied with access and W_OK and R_OK, the digital fingerprint using MD5_Init(), MD5_Update αand MDF_Final(). Then I used key_generator() 
+to get the key file and encrypt_data() to encrypt the log file. 
+
+
+fwrite():
+Firstly I get the user id with getuid(), then the path from the file decriptor which is why I used the functions fileno(stream) and readlink(),
+the date and timestamp using locatime(), the access_type equals 2 because it's for writing, the flag is_action_denied with access and W_OK, 
+the digital fingerprint using MD5_Init(), MD5_Update αand MDF_Final(). Then I used key_generator() to get the key file and encrypt_data() to encrypt the log file.
+
+key_generator():
+This function is used to generate a key and returns a FILE* that contains that key and the generated number e used for ecryption. 
+
+encrypt_data():
+This function reads the input file and encrypts it's data into the output file.
+
+I only implemented step 1 due to bad time management. 
