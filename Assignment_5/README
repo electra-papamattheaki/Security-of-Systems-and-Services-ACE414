@@ -1,0 +1,27 @@
+*** README File - Assignment 5 ***
+
+Ilektra-Despoina Papamatthaiaki, AM: 2018030106
+
+--gcc version
+gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+Copyright (C) 2021 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+-----------------------------------------------------------------------------------------------------
+This project is not complete.
+
+First I initialized the valued I need to print later (about the total packets, network flow, tcp, udp etc.) and I created a main function that has the functionality we want, when given the correct arguments it is supposed to run another function. I only wrote one: packet_capture(output_file); that is supposed to capture the file and process the information from it. 
+
+11. Can you tell if an incoming TCP packet is a retransmission? If yes, how? If not, why?
+    In general you can tell if an incoming TCP packet is a retransmission if:
+        - When the packet is not kept-alive
+        - When payload > 0, or when flags SYN = 1 or FIN = 1
+        - When the expected number of the sequence is greater than the sequence number of the packet
+
+        in order to check this I created two structs: network_flow & tcp_packet but didn't complete the task. 
+
+12. Can you tell if an incoming UDP packet is a retransmission? If yes, how? If not, why?
+    No, the DCP Protocol does not retrasmit packets, so there is no possibility of a retransmission.
+
+
